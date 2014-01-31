@@ -6,6 +6,7 @@
 html, body{
     margin:0;
     padding:0;
+    width: 100%;
 }
 nav{
     position: fixed;
@@ -86,6 +87,18 @@ nav{
 }
 @media only screen 
 and (max-width : 1024px) {
+    h1{
+        font-size:3.0em;
+    }
+    h2{
+        font-size:.7em;
+    }
+    p{
+        font-size:.7em;
+    }
+    pre{
+        font-size:.7em;
+    }
     nav{
         &:before{
             display: block;
