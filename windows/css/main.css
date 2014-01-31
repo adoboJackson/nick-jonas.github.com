@@ -326,6 +326,14 @@ nav ul li a:hover {
   position: absolute;
 }
 
+.show ul {
+  display: block;
+}
+
+.show:before {
+  display: none;
+}
+
 .window:nth-child(1) {
   background: #d5d7dd;
   top: 0%;
@@ -375,22 +383,11 @@ nav ul li a:hover {
     display: none;
   }
 
-  nav:hover:before {
-    display: none;
-  }
-
-  nav:hover ul {
-    display: block;
-    -webkit-flex-flow: column nowrap;
-    -ms-flex-flow: column nowrap;
-    flex-flow: column nowrap;
-  }
-
-  nav:hover ul li {
+  nav ul li {
     margin: 10px 0;
   }
 
-  nav:hover ul li a {
+  nav ul li a {
     font-size: 2em;
   }
 }

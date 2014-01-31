@@ -65,6 +65,15 @@ nav{
     height:100%;
     position:absolute;
 }
+.show{
+    ul{
+        display:block;
+    }
+    
+    &:before{
+        display:none;
+    }
+}
 
 @for $i from 1 through 6{
     .window:nth-child(#{$i}){
@@ -83,20 +92,13 @@ and (max-width : 1024px) {
         }
         ul{
             display:none;
-
-        }
-        &:hover{
-            &:before{
-                display: none;
-            }
-            ul{
-                display:block;
-                flex-flow: column nowrap;
-                li{
-                    margin: 10px 0;
-                    a{font-size: 2em}
+            li{
+                margin: 10px 0;
+                a{
+                    font-size: 2em;
                 }
             }
+
         }
     }
 }

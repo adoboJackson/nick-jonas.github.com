@@ -2,7 +2,7 @@
 <html>
     <head>
         <title>windows</title>
-
+        <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=no;"/>
         <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
         <script src="js/jquery.windows.js"></script>
         <script src="js/jquery.stellar.js"></script>
@@ -113,7 +113,6 @@
                 /* start stellar (for parallax effect) */
                 $("body").stellar();
                 /* end stellar */
-
                 /* --- start animate to anchor ----*/
                 /* --http://css-tricks.com/snippets/jquery/smooth-scrolling/ --*/
                 $('a[href*=#]:not([href=#])').click(function() {
@@ -124,11 +123,17 @@
                         $('html,body').animate({
                           scrollTop: target.offset().top
                         }, 1000);
+                        $('nav').removeClass('show');
                         return false;
                       }
                     }
                 });
                 /* --- end animate to anchor ----*/
+                /* -- start click to show nav -- */
+                $( "nav" ).on( "click", function() {
+                  $('nav').addClass('show');
+                });
+                /* -- end click to expand nav -- */
                 var $windows = $('.window');
 
                 $windows.windows({
@@ -137,7 +142,9 @@
                     snapInterval: 1100,
                     onScroll: function(s){},
                     onSnapComplete: function($el){},
-                    onWindowEnter: function($el){console.log('log this:'+$('.window').getCurrentWindow().attr('id'));}
+                    onWindowEnter: function($el){
+
+                    }
                 });
 
             });
