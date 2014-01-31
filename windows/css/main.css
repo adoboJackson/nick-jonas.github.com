@@ -255,27 +255,59 @@ nav {
   position: fixed;
   z-index: 1000;
   top: 0;
+  left: 0;
+  right: 0;
   background: rgba(0, 0, 0, 0.25);
+}
+
+nav:before {
+  content: '\2630';
+  font-size: 3em;
+  display: block;
+  line-height: 50px;
+  text-align: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 10px;
   padding: 20px;
-  width: 100%;
+  background: #333a3e;
+  color: #d5d7dd;
+  margin: 5px;
+  display: none;
 }
 
 nav ul {
+  margin: 0 10px;
+  padding: 10px 0;
   list-style: none;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-flow: row nowrap;
+  -ms-flex-flow: row nowrap;
+  flex-flow: row nowrap;
 }
 
 nav ul li {
-  margin: 0;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -moz-box-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
   padding: 0;
-  display: inline-block;
+  margin: 0 10px 0 0;
+}
+
+nav ul li:last-child {
+  margin-right: 0;
 }
 
 nav ul li a {
-  width: 100px;
   display: block;
   text-decoration: none;
   padding: 10px;
-  margin: 0 10px;
   text-align: center;
   border-radius: 5px;
   background: #d5d7dd;
@@ -332,4 +364,33 @@ nav ul li a:hover {
 
 .window:nth-child(1) {
   background: white url(http://placekitten.com/1280/960) 0 0 repeat fixed;
+}
+
+@media only screen and (max-width: 1024px) {
+  nav:before {
+    display: block;
+  }
+
+  nav ul {
+    display: none;
+  }
+
+  nav:hover:before {
+    display: none;
+  }
+
+  nav:hover ul {
+    display: block;
+    -webkit-flex-flow: column nowrap;
+    -ms-flex-flow: column nowrap;
+    flex-flow: column nowrap;
+  }
+
+  nav:hover ul li {
+    margin: 10px 0;
+  }
+
+  nav:hover ul li a {
+    font-size: 2em;
+  }
 }
