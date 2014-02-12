@@ -1,14 +1,20 @@
+*{
+    padding: 0;
+    margin: 0;
+}
 h1{
     font-family:$bold;
     font-size:6.0em;
     color:$teal;
     text-align:center;
+
 }
 h2{
     font-family:$bold;
     font-size:1.4em;
     text-align:center;
     color: white;
+
 }
 p{
     font-family:$regular;
@@ -69,8 +75,11 @@ pre{
     .content{
         position:absolute;
         top:50%;
-        width:100%;
         margin-top:-230px;
+        padding: 10% 10%;
+        .text-container{
+            background: $red;
+        }
         h2{
             text-align:center;
             font-size:3.0em;
@@ -90,11 +99,21 @@ pre{
 
 // code example
 .window:nth-child(4){
-    pre{
+    .content{
         position:absolute;
         top:50%;
-        left:50%;
-        margin:-220px 0 0 -450px;
+        margin-top:-230px;
+        padding: 10% 10%;
+        border-radius: 20px;
+        .text-container{
+            background: $dark-gray;
+        }
+        h2{
+            text-align:center;
+            font-size:3.0em;
+            color: $off-black;
+        }
+
     }
 }
 
@@ -123,5 +142,30 @@ pre{
         left:50%;
         margin:-100px 0 0 -100px;
         text-align:center;
+    }
+}
+.text-container{
+    border-radius: 20px;
+    padding: 20px;
+    
+}
+ul.flickrbox{
+    display: flex;
+    flex-flow: row wrap;
+    height: 100%;
+    justify-content: center;
+    li{
+        display: block;
+        margin: 1em;
+        a{
+            img{
+            transform: scale(1);
+            transition: all 0.25s ease-out;
+            }
+            &:hover img{
+                
+                transform: scale(1.1);
+            }
+        }
     }
 }

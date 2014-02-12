@@ -6,44 +6,43 @@
         <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
         <script src="js/jquery.windows.js"></script>
         <script src="js/jquery.stellar.js"></script>
+        <!-- flickr feed -->
+        <script src="js/jflickrfeed.min.js"></script>
+        <!-- end flickr feed -->
         <link rel="stylesheet" href="css/main.css">
 
     </head>
     <body>
-
+        <!-- <div id="lightbox"></div> -->
         <!-- NOTE: each "window" is a section element with class .window -->
 
         <section id="0" class="window" data-stellar-background-ratio="0.5">
             <nav>
                 <ul>
-                <li><a href="#0">top</a></li><li><a href="#1">section one</a></li><li><a href="#2">section two</a></li><li><a href="#3">section three</a></li><li><a href="#4">section four</a></li><li><a href="#5">section five</a></li>
+                <li><a href="#0">top</a></li><li><a href="#map">Map</a></li><li><a href="#2">Filipino Community Center</a></li><li><a href="#3">Photos</a></li><li><a href="#4">section four</a></li><li><a href="#5">section five</a></li>
                 </ul>
             </nav>
             <div class="content">
-
-                    <h1>windows</h1>
-                    <h2>a handy, loosely-coupled jQuery plugin for full-screen scrolling windows</h2>
+                    <h1>2014</h1>
+                    <h2>Bernardo Family Reunion</h2>
             </div>
         </section>
 
-        <section id="1" class="window">
+        <section id="map" class="window">
+            <iframe src="https://mapsengine.google.com/map/embed?mid=zJIDKEDkoA54.kIRaFiV96csU" width="100%" height="50%" style="margin: 0"></iframe>
             <div class="content">
-                <h2>
-                project root<br/>
-                | -- css<br/>
-                | -- | -- main.css (compiled)<br/>
-                | -- js<br/>
-                | -- | -- <span class="highlight">jquery.windows.js</span><br/>
-                | -- scss<br/>
-                | -- | -- <span class="highlight">main.scss</span><br/>
-                | -- <span class="highlight">index.html</span>
-                </h2>
+                <h2>Road Trip!</h2>
+                <p>
+                    <strong>This is the a list of locations that we've all agreed on.</strong>
+                    <span>Let me know if you want some added.</span>
+                </p>
             </div>
         </section>
 
-        <section id="2" class="window">
+        <section id="2" class="window" data-stellar-background-ratio="0.5">
             <div class="content">
-                <h2>How it works</h2>
+                <div class="text-container">
+                <h2>The Filipino Community Center</h2>
                 <div class="explanation">This is a light bootstrap that sets up:
                     <ul>
                         <li>- the basic SASS for sequential full screen windows</li>
@@ -51,26 +50,17 @@
                     </ul>
                     The plugin simply opens up a handy API for position management, provides callbacks, and will allow for window snapping.  No CSS is applied to the callee.
                 </div>
-            </div>
+            </div><!-- end .text-container -->
+            </div><!-- end .content -->
         </section>
 
         <section id="3" class="window">
-            <pre>
-                $('.window').windows({
-                    snapping: true,
-                    snapSpeed: 500,
-                    snapInterval: 1100,
-                    onScroll: function(scrollPos){
-                        // scrollPos:Number
-                    },
-                    onSnapComplete: function($el){
-                        // after window ($el) snaps into place
-                    },
-                    onWindowEnter: function($el){
-                        // when new window ($el) enters viewport
-                    }
-                });
-            </pre>
+            <div class="content">
+                <div class="text-container">
+                <h2>photos</h2>
+                <ul class="flickrbox" class="thumbs"></ul>
+            </div><!-- end .content -->
+            </div><!-- end .text-container -->
         </section>
 
         <section id="4" class="window">
@@ -107,9 +97,10 @@
 
             </div>
         </section>
+        <div id="lightbox"></div>
         <script>
-
             $(document).ready(function(){
+               
                 /* start stellar (for parallax effect) */
                 $("body").stellar();
                 /* end stellar */
@@ -146,7 +137,52 @@
 
                     }
                 });
-
+                 /*-- start colorbox/flickr feed --*/
+                $('.flickrbox').jflickrfeed({
+                    limit: 14,
+                    qstrings: {
+                        id: '37304598@N02'
+                    },
+                    itemTemplate: '<li>'+
+                                    '<a class="lightbox" href="{{image}}" target="_blank" title="{{title}}">' +
+                                        '<img src="{{image_s}}" alt="{{title}}" />' +
+                                    '</a>' +
+                                  '</li>'
+                },imagesLoaded);
+                /*-- end colorbox/flickr feed --*/
+                /*-- start homemade lightbox --*/
+                function imagesLoaded(){
+                    console.log("do this");
+                     $('#lightbox').on('click', function() { //must use live, as the lightbox element is inserted into the DOM
+                       $('#lightbox').fadeOut().css({'display':'none'});
+                    });
+                    $('.flickrbox li a').click(function(e) {
+                        //prevent default action (hyperlink)
+                        e.preventDefault();
+                        //Get clicked link href
+                        var image_href = $(this).attr("href");
+                        console.log("clicked:"+image_href);
+                        /*  
+                        If the lightbox window HTML already exists in document, 
+                        change the img src to to match the href of whatever link was clicked
+                         
+                        If the lightbox window HTML doesn't exists, create it and insert it.
+                        (This will only happen the first time around)
+                        */
+                         
+                        if ($('#lightbox').length > 0) { // #lightbox exists
+                             
+                            //place href as img src value
+                            $('#lightbox').html('<img src="' + image_href + '" />');
+                             
+                            //show lightbox window - you could use .show('fast') for a transition
+                          $('#lightbox').fadeIn().css({'display':'flex'});
+                        }
+                });
+                }
+                
+                
+                /*-- end homemade lightbox --*/
             });
         </script>
 

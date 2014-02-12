@@ -1,12 +1,31 @@
-@import "demo/fonts";
-@import "demo/colors";
-@import "demo/demo";
-@import "demo/btn";
+@import "includes/fonts";
+@import "includes/colors";
+@import "includes/demo";
+@import "includes/btn";
 
 html, body{
     margin:0;
     padding:0;
     width: 100%;
+}
+#lightbox {
+    position:fixed; /* keeps the lightbox window in the current viewport */
+    top:0; 
+    left:0; 
+    width:100%; 
+    height:100%; 
+    background:rgba(0,0,0,.5); 
+    text-align:center;
+    z-index: 1001;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+#lightbox img{
+    flex: 0 auto;
+}
+#lightbox.active{
+    display: flex;
 }
 nav{
     position: fixed;
@@ -83,10 +102,14 @@ nav{
     }
 }
 .window:nth-child(1){
-	background: #fff url(http://placekitten.com/1280/960) 0 0 repeat fixed;
+    background: #fff url(http://placekitten.com/g/1280/960) 0 0 repeat fixed;
+}
+.window:nth-child(3){
+    background: #fff url(../img/filipino-bg-teal.jpg) 0 0 repeat fixed;
 }
 @media only screen 
 and (max-width : 1024px) {
+    /*
     h1{
         font-size:3.0em;
     }
@@ -98,7 +121,7 @@ and (max-width : 1024px) {
     }
     pre{
         font-size:.7em;
-    }
+    }*/
     nav{
         &:before{
             display: block;
